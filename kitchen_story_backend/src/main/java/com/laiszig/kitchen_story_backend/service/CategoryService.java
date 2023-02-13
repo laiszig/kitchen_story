@@ -20,4 +20,12 @@ public class CategoryService {
     public void saveCategory(Category category) {
         categoryRepository.save(category);
     }
+
+    public Category getCategory(Integer id) {
+        return categoryRepository.findById(id).get();
+    }
+
+    public void deleteCategory(Integer id) {
+        categoryRepository.deleteById(id);
+    }
 }

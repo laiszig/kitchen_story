@@ -3,15 +3,13 @@ package com.laiszig.kitchen_story_backend.controller;
 import com.laiszig.kitchen_story_backend.entity.Category;
 import com.laiszig.kitchen_story_backend.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 public class CategoryController {
@@ -20,7 +18,7 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping("/categories")
-    public List<Category> listAll() {
+    public List<Category> getAll() {
         return categoryService.findAll();
     }
 
@@ -29,4 +27,25 @@ public class CategoryController {
         categoryService.saveCategory(category);
         return new ResponseEntity<>(category, HttpStatus.CREATED);
     }
+
+    @GetMapping("/categories/{id}")
+    public ResponseEntity<Category> getCategory(@PathVariable Integer id) {
+        try {
+            Category category = categoryService.getCategory(id);
+            return new ResponseEntity<>(category, HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/categories/{id}")
+    public ResponseEntity<Category> deleteCategory (@PathVariable Integer id) {
+        try {
+            categoryService.deleteCategory(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (EmptyResultDataAccessException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }
