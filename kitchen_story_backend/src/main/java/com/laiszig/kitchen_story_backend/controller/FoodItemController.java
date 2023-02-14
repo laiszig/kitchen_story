@@ -1,6 +1,5 @@
 package com.laiszig.kitchen_story_backend.controller;
 
-import com.laiszig.kitchen_story_backend.entity.Category;
 import com.laiszig.kitchen_story_backend.entity.FoodItem;
 import com.laiszig.kitchen_story_backend.service.FoodItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +23,13 @@ public class FoodItemController {
     }
 
     @PostMapping("/items")
-    public ResponseEntity<FoodItem> saveCategory(@RequestBody FoodItem foodItem) {
+    public ResponseEntity<FoodItem> saveItem(@RequestBody FoodItem foodItem) {
         foodItemService.saveFoodItem(foodItem);
         return new ResponseEntity<>(foodItem, HttpStatus.CREATED);
     }
 
     @GetMapping("/items/{id}")
-    public ResponseEntity<FoodItem> getCategory(@PathVariable Integer id) {
+    public ResponseEntity<FoodItem> getItem(@PathVariable Integer id) {
         try {
             FoodItem foodItem = foodItemService.getFoodItem(id);
             return new ResponseEntity<>(foodItem, HttpStatus.OK);
