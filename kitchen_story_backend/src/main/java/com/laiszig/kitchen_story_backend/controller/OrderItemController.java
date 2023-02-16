@@ -40,7 +40,7 @@ public class OrderItemController {
     }
 
     @DeleteMapping("/orderitem/{id}")
-    public ResponseEntity<OrderItem> deleteCategory (@PathVariable Integer id) {
+    public ResponseEntity<OrderItem> deleteOrderItem (@PathVariable Integer id) {
         try {
             orderItemService.deleteOrderItem(id);
             return new ResponseEntity<>(HttpStatus.OK);
