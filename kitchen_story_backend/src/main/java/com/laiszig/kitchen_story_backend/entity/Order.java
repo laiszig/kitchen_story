@@ -13,13 +13,16 @@ import lombok.NoArgsConstructor;
 public class Order {
 
     @Id
+    @Column(name = "order_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
-    private Integer quantity;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = true)
+    private User user;
 
-    //TODO: add relationship
-//    @JoinColumn(name = "item_id", nullable = true)
-//    private FoodItem foodItem;
+    @ManyToOne
+    @JoinColumn(name = "order_item_id", nullable = true)
+    private OrderItem orderItem;
 
 }

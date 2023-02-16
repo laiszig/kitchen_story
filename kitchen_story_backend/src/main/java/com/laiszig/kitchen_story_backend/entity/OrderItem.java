@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "order_items")
-public class OrderItems {
+public class OrderItem {
 
     @Id
-    @Column
+    @Column (name = "order_item_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
