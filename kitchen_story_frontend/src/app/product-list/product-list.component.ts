@@ -1,23 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from '../product';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit {
 
-  products:any = [];
+  constructor(private router:Router, private activatedRoute:ActivatedRoute, private service:ProductService) { }
+  products: Product[];
 
   ngOnInit(): void {
-    this.products = [
-      {"name" : "carrot", "category" : "vegetable", "price" : "0.99"}
-    ]
+    this.service.getAllProducts().subscribe(result=>this.products=result);
   }
 
-  btnClick=  () => {
+  btnClick = () => {
     //this.router.navigate(['payment']);
-    console.log("click")
-};
-
+    console.log('click');
+  };
 }
