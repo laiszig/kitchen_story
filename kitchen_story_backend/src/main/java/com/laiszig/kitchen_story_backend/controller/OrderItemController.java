@@ -1,6 +1,5 @@
 package com.laiszig.kitchen_story_backend.controller;
 
-import com.laiszig.kitchen_story_backend.entity.FoodItem;
 import com.laiszig.kitchen_story_backend.entity.OrderItem;
 import com.laiszig.kitchen_story_backend.service.OrderItemService;
 import org.springframework.beans.factory.annotation.Autowired;
