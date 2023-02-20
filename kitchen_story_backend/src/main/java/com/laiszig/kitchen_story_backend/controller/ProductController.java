@@ -1,5 +1,6 @@
 package com.laiszig.kitchen_story_backend.controller;
 
+import com.laiszig.kitchen_story_backend.controller.request.ProductSearchRequest;
 import com.laiszig.kitchen_story_backend.entity.Product;
 import com.laiszig.kitchen_story_backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,12 @@ public class ProductController {
 
     @GetMapping("/products")
     public List<Product> getAll() {
-        return productService.findAll();
+            return productService.findAll();
+    }
+
+    @GetMapping("/searchproducts")
+    public List<Product> searchProduct(@RequestBody ProductSearchRequest search) {
+        return productService.searchByCategory(search.getCategoryId());
     }
 
     @PostMapping("/products")

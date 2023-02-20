@@ -17,6 +17,10 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public List<Product> searchByCategory (Integer id){
+        return productRepository.findByCategoryId(id);
+    }
+
     public void saveFoodItem(Product product) {
         productRepository.save(product);
     }
