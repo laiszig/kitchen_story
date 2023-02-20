@@ -23,12 +23,13 @@ export class ProductListComponent implements OnInit {
   }
 
   btnClick = () => {
-    //this.router.navigate(['payment']);
     console.log('click');
   };
 
   categorySelection = (event:any) => {
-    //this.router.navigate(['payment']);
-    console.log(event.target.value);
+    const categoryId = event.target.value;
+    if(categoryId != 0) {
+      this.productService.getProductsByCategory(categoryId).subscribe(result=>this.products=result);
+    }    
   };
 }
