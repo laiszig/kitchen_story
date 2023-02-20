@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
-import{ HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from './product';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
-
-  url:string="http://localhost:8080/items";
+  url: string = 'http://localhost:8080/products';
 
   //inject the DI
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   //get all products
-  getAllProducts():Observable<Product[]>{
+  getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.url);
-}
+  }
 }

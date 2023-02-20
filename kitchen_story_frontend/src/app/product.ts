@@ -1,7 +1,9 @@
+import { Category } from "./category";
+
 export class Product{
 
     id:number;
     name:string;
-    category:string;
-    price:string;
+    category:Category;
+    price:bigint;
 }

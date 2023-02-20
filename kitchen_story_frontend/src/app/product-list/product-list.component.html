@@ -1,5 +1,10 @@
 <h1>Product List Component</h1>
 
+<select (change)="categorySelection($event)">
+    <option value="0">All Categories</option>
+    <option *ngFor="let category of categories" value="{{ category.id }}">{{ category.name }}</option>
+</select>
+
 <table>
   <thead>
     <tr>
@@ -13,7 +18,7 @@
     <tr *ngFor="let product of products">
       <td>{{ product.id}} </td>
       <td>{{ product.name }}</td>
-      <td>{{ product.category }}</td>
+      <td>{{ product.category.name }}</td>
       <td>{{ product.price }}</td>
       <td>
         <button (click)="btnClick()" type="button" class="btn btn-success">
