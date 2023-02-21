@@ -26,7 +26,7 @@ public class ProductController {
             return productService.findAll();
     }
 
-    @GetMapping("/searchproducts")
+    @PostMapping("/searchproducts")
     public List<Product> searchProduct(@RequestBody ProductSearchRequest search) {
         return productService.searchByCategory(search.getCategoryId());
     }
