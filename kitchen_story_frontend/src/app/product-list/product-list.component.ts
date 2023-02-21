@@ -4,6 +4,8 @@ import { Category } from '../category';
 import { CategoryService } from '../category.service';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
+import { CartService } from '../cart.service';
+import { CartItem } from '../cartItem';
 
 @Component({
   selector: 'app-product-list',
@@ -15,7 +17,8 @@ export class ProductListComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private cartService: CartService
   ) {}
   products: Product[];
   categories: Category[];
@@ -29,8 +32,11 @@ export class ProductListComponent implements OnInit {
       .subscribe((result) => (this.categories = result));
   }
 
-  btnClick = () => {
-    console.log('click');
+  btnClick = (id: number) => {
+    let cartItem = new CartItem()
+    cartItem.id = id
+    cartItem.quantity = 1
+    this.cartService.addItem(cartItem)
   };
 
   categorySelection = (event: any) => {
