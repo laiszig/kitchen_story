@@ -36,7 +36,7 @@ export class ProductListComponent implements OnInit {
     let cartItem = new CartItem()
     cartItem.id = id
     cartItem.quantity = 1
-    this.cartService.addItem(cartItem)
+    this.cartService.addToCart(cartItem)
   };
 
   categorySelection = (event: any) => {

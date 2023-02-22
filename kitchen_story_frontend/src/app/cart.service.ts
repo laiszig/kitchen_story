@@ -11,8 +11,8 @@ export class CartService {
 
   localStorageKey: string = 'cart';
 
-  public addItem(newCartItem: CartItem) {
-    let items = this.getData();
+  public addToCart(newCartItem: CartItem) {
+    let items = this.loadCart();
     let found = false;
     for (let index = 0; index < items.length; index++) {
       let cartItem = items[index];
@@ -28,7 +28,7 @@ export class CartService {
     localStorage.setItem(this.localStorageKey, JSON.stringify(items));
   }
 
-  public getData(): any[] {
+  public loadCart(): any[] {
     const items = localStorage.getItem(this.localStorageKey);
     return JSON.parse(items || '[]');
   }
