@@ -32,10 +32,11 @@ export class ProductListComponent implements OnInit {
       .subscribe((result) => (this.categories = result));
   }
 
-  btnClick = (id: number) => {
+  btnClick = (id: number, name: string) => {
     let cartItem = new CartItem()
     cartItem.id = id
     cartItem.quantity = 1
+    cartItem.productName = name;
     this.cartService.addToCart(cartItem)
   };
 

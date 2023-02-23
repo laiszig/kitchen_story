@@ -8,7 +8,7 @@ import { CartItem } from '../cartItem';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
   constructor(
@@ -16,13 +16,20 @@ export class CartComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
     private categoryService: CategoryService,
-    private cartService: CartService)
-     {}
+    private cartService: CartService
+  ) {}
 
-     items: CartItem[];
+  items: CartItem[];
 
-     ngOnInit(): void {
-      this.items = this.cartService.loadCart();
-      console.log(this.items);
-    }
+  ngOnInit(): void {
+    this.items = this.cartService.loadCart();
+    console.log(this.items);
+  }
+
+  //----- remove specific item
+  removeFromCart(cartItem: CartItem) {
+    console.log('remove item clicked');
+    this.cartService.removeItem(cartItem);
+    this.items = this.cartService.loadCart();
+  }
 }

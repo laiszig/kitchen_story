@@ -33,11 +33,14 @@ export class CartService {
     return JSON.parse(items || '[]');
   }
 
-  public removeData() {
-    localStorage.removeItem(this.localStorageKey);
-  }
+  removeItem(cartItem: CartItem) {
+    let items = this.loadCart();
+    console.log(items);
+    const index = items.findIndex((o) => o.id === cartItem.id);
 
-  public clearData() {
-    localStorage.clear();
+    if (index > -1) {
+      items.splice(index, 1);
+      localStorage.setItem(this.localStorageKey, JSON.stringify(items));
+    }
   }
 }

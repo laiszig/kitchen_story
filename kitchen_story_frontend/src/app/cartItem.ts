@@ -1,6 +1,6 @@
 export class CartItem{
 
     id:number;
-    // productName:string;
+    productName:string;
     quantity:number;
 }
