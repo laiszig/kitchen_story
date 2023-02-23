@@ -32,4 +32,10 @@ export class CartComponent implements OnInit {
     this.cartService.removeItem(cartItem);
     this.items = this.cartService.loadCart();
   }
+
+  //----- clear cart item
+  clearCart(items: CartItem[]) {
+    this.cartService.clearCart(items);
+    this.items = [...this.cartService.loadCart()];
+  }
 }

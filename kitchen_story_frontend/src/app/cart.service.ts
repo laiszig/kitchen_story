@@ -10,6 +10,7 @@ export class CartService {
   constructor() {}
 
   localStorageKey: string = 'cart';
+  items : CartItem[];
 
   public addToCart(newCartItem: CartItem) {
     let items = this.loadCart();
@@ -42,5 +43,9 @@ export class CartService {
       items.splice(index, 1);
       localStorage.setItem(this.localStorageKey, JSON.stringify(items));
     }
+  }
+
+  clearCart(items: CartItem[]) {
+    localStorage.clear();
   }
 }
