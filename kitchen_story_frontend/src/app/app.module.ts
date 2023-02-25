@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CartComponent } from './cart/cart.component';
 import { FormsModule } from '@angular/forms';
+import { CurrencyPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
