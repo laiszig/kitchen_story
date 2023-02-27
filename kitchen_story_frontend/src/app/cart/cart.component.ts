@@ -53,7 +53,7 @@ export class CartComponent implements OnInit {
     this.items = [...this.cartService.loadCart()];
   }
 
-  //----- calculate tota
+  //----- calculate total
   get total() {
     const calculatePrice = this.items.reduce((prevVal: any, currentVal) => {
       let totalOrderItem = currentVal.quantity * currentVal.price;
@@ -64,6 +64,7 @@ export class CartComponent implements OnInit {
     return totalPrice;
   }
 
+  //----- calculate total per item
   changeSubtotal(item:CartItem, index:any) {
     const qty = item.quantity;
     const amt = item.price;
@@ -74,5 +75,9 @@ export class CartComponent implements OnInit {
       index
     ].nativeElement.innerHTML = subTotal_converted;
     this.cartService.saveCart();
+  }
+
+  saveCart() {
+    this.cartService.saveCart;
   }
 }

@@ -50,6 +50,8 @@ export class CartService {
   }
 
   saveCart(): void {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(this.items)); 
+    localStorage.setItem(this.localStorageKey, JSON.stringify(this.items));
+    localStorage.getItem(this.localStorageKey);
+    this.loadCart;
   }
 }
