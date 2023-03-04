@@ -9,6 +9,7 @@ import { CartComponent } from './cart/cart.component';
 import { FormsModule } from '@angular/forms';
 import { CurrencyPipe } from '@angular/common';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
     ProductListComponent,
     CartComponent,
     OrderDetailsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
