@@ -8,7 +8,6 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { CartComponent } from './cart/cart.component';
 import { FormsModule } from '@angular/forms';
 import { CurrencyPipe } from '@angular/common';
-import { OrderDetailsComponent } from './order-details/order-details.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { SecurityInterceptorService } from './security-interceptor.service';
@@ -18,7 +17,6 @@ import { SecurityInterceptorService } from './security-interceptor.service';
     AppComponent,
     ProductListComponent,
     CartComponent,
-    OrderDetailsComponent,
     RegisterComponent,
     LoginComponent
   ],
