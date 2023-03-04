@@ -1,7 +1,7 @@
 package com.laiszig.kitchen_story_backend.controller;
 
 import com.laiszig.kitchen_story_backend.entity.Customer;
-import com.laiszig.kitchen_story_backend.service.UserService;
+import com.laiszig.kitchen_story_backend.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class UserController {
+public class CustomerController {
 
     @Autowired
-    private UserService userService;
+    private CustomerService customerService;
 
     @GetMapping("/user")
     public List<Customer> getAll() {
-        return userService.findAll();
+        return customerService.findAll();
     }
 
     @PostMapping("/user")
     public ResponseEntity<Customer> saveUser(@RequestBody Customer customer) {
-        userService.saveUser(customer);
+        customerService.saveUser(customer);
         return new ResponseEntity<>(customer, HttpStatus.CREATED);
     }
 
