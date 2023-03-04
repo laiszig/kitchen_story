@@ -1,6 +1,6 @@
 package com.laiszig.kitchen_story_backend.service;
 
-import com.laiszig.kitchen_story_backend.entity.User;
+import com.laiszig.kitchen_story_backend.entity.Customer;
 import com.laiszig.kitchen_story_backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +13,10 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public List<User> findAll() {
+    public List<Customer> findAll() {
         return userRepository.findAll();
     }
 
-    public void saveUser(User user) {  //TODO: add code
+    public void saveUser(Customer customer) {  //TODO: add code
     }
 }

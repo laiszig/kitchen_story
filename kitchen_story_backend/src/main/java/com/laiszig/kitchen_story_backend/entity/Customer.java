@@ -14,29 +14,29 @@ import java.util.Date;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "customers")
+public class Customer {
 
     @Id
-    @Column(name = "user_id")
+    @Column(name = "customer_id")
     private Integer id;
 
-    @Column(name = "user_name")
+    @Column(name = "customer_name")
     private String name;
 
-    @Column(name = "user_email")
+    @Column(name = "customer_email")
     private String email;
 
-    @Column(name = "user_password")
+    @Column(name = "customer_password")
     private String password;
 
-    @Column(name = "user_address")
+    @Column(name = "customer_address")
     private String address;
 
-    @Column(name = "user_enabled")
+    @Column(name = "customer_enabled")
     private Short enabled;
 
-    @Column(name = "user_created_at")
+    @Column(name = "customer_created_at")
     private Date createdAt;
 
 }
