@@ -65,7 +65,7 @@ public class SecurityConfig  {
 
         httpSecurity.csrf().disable()
                 .cors().and()
-                .authorizeRequests().antMatchers("/authenticate", "/hello", "/register").permitAll()
+                .authorizeRequests().antMatchers("/authenticate", "/register", "/products", "/categories").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).and().sessionManagement()
