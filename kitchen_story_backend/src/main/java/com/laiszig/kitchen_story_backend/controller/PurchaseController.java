@@ -1,5 +1,6 @@
 package com.laiszig.kitchen_story_backend.controller;
 
+import com.laiszig.kitchen_story_backend.controller.request.ItemRequest;
 import com.laiszig.kitchen_story_backend.controller.request.PurchaseRequest;
 import com.laiszig.kitchen_story_backend.entity.Payment;
 import com.laiszig.kitchen_story_backend.entity.Purchase;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,28 +35,27 @@ public class PurchaseController {
     @PostMapping("/purchase")
     public void purchase(@RequestBody PurchaseRequest purchaseRequest) {
 
-
         Purchase purchase = new Purchase();
-        purchase.setUser(userRepository.findById(7L).get());
 
         Payment payment = new Payment();
-        payment.setType("CREDIT");
-        payment.setCardCvv(999);
-        payment.setCardCvv(1);
-
+        payment.setType(purchaseRequest.getPayment().getType());
+        payment.setCardNumber(purchaseRequest.getPayment().getCardNumber());
+        payment.setCardCvv(purchaseRequest.getPayment().getCardCvv());
         purchase.setPayment(payment);
 
-        PurchaseItem purchaseItem = new PurchaseItem();
-        purchaseItem.setPrice(new BigDecimal("2.56"));
-        purchaseItem.setProduct(productRepository.findById(1).get());
-        purchaseItem.setQuantity(1);
-
         List<PurchaseItem> items = new ArrayList<>();
-        items.add(purchaseItem);
+        for (ItemRequest item : purchaseRequest.getItems()) {
+            PurchaseItem purchaseItem = new PurchaseItem();
+            purchaseItem.setPrice(item.getPrice());
+            purchaseItem.setProduct(productRepository.findById(item.getId()).get());
+            purchaseItem.setQuantity(item.getQuantity());
+            items.add(purchaseItem);
+        }
+
 
         purchase.setPurchaseItems(items);
 
-
+        purchase.setUser(userRepository.findById(7L).get());
         purchaseRepository.save(purchase);
 
 
