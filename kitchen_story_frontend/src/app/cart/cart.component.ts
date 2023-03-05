@@ -80,4 +80,10 @@ export class CartComponent implements OnInit {
   saveCart() {
     this.cartService.saveCart;
   }
+
+
+
+  btnClick() {
+    this.router.navigateByUrl('/purchase');
+  };
 }

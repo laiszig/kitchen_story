@@ -11,6 +11,7 @@ import { CurrencyPipe } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { SecurityInterceptorService } from './security-interceptor.service';
+import { PurchaseComponent } from './purchase/purchase.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SecurityInterceptorService } from './security-interceptor.service';
     ProductListComponent,
     CartComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    PurchaseComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,53 @@
+<p>purchase works!</p>
+
+<table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <button (click)="btnClick()"  type="button" class="btn btn-success">
+            Confirm Payment
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="row">
+    <div class="col-12" *ngFor="let cartItem of items; let i = index">
+      <div class="row" id="{{ cartItem.id }}">
+        <div class="col-6">
+          <div class=" ">
+            {{ cartItem.productName }}
+            <small>( {{ cartItem.price + "" | currency }} ) </small>
+          </div>
+        </div>
+        <div class="col-2 p-0">
+          <input
+            [(ngModel)]="cartItem.quantity"
+            [ngModelOptions]="{ standalone: true }"
+            min="1"
+            type="number"
+            value="{{ cartItem.quantity }}"
+            name=""
+            class="form-control"
+            change="changeSubTotal(cartItem, i)"
+          />
+        </div>
+        <div class="col-2 pr-0">
+          <div #subTotalWrap>{{ "totalPerItem = $" + (cartItem.price * cartItem.quantity)  }}</div>
+        </div>
+        <div class="col-1 pl-0">
+        </div>
+      </div>
+    </div>
+  
