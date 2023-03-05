@@ -1,26 +1,4 @@
-<p>purchase works!</p>
-
-<table>
-    <thead>
-      <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>
-          <button (click)="btnClick()"  type="button" class="btn btn-success">
-            Confirm Payment
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<p>Confirm Purchase</p>
 
   <div class="row">
     <div class="col-12" *ngFor="let cartItem of items; let i = index">
@@ -32,22 +10,65 @@
           </div>
         </div>
         <div class="col-2 p-0">
-          <input
-            [(ngModel)]="cartItem.quantity"
-            [ngModelOptions]="{ standalone: true }"
-            min="1"
-            type="number"
-            value="{{ cartItem.quantity }}"
-            name=""
-            class="form-control"
-            change="changeSubTotal(cartItem, i)"
-          />
+          Quantity = 
+          {{ cartItem.quantity }}
         </div>
         <div class="col-2 pr-0">
-          <div #subTotalWrap>{{ "totalPerItem = $" + (cartItem.price * cartItem.quantity)  }}</div>
+          <div #subTotalWrap>{{ "Item Total = $" + (cartItem.price * cartItem.quantity)  }}</div> <br>
         </div>
         <div class="col-1 pl-0">
+
         </div>
       </div>
     </div>
   
+<br>
+-------------------------------------------------------
+<br>
+
+<p>Payment Information</p>
+<form
+name="form"
+(ngSubmit)="onSubmit()"
+#f="ngForm"
+novalidate
+>
+      <label for="paymentType"> Payment Type: </label>
+      <input
+            type="paymentType"
+            class="form-control"
+            name="paymentType"
+            [(ngModel)]="form.paymentType"
+            required
+            paymentType
+            #paymentType="ngModel"
+          /><br>
+      <label for="cardNumber"> Card Number: </label>
+      <input
+            type="cardNumber"
+            class="form-control"
+            name="cardNumber"
+            [(ngModel)]="form.cardNumber"
+            required
+            cardNumber
+            #cardNumber="ngModel"
+          /><br>
+      <label for="cardCvv"> CVV: </label>
+      <input
+            type="cardCvv"
+            class="form-control"
+            name="cardCvv"
+            [(ngModel)]="form.cardCvv"
+            required
+            cardCvv
+            #cardCvv="ngModel"
+          />
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Process Payment</button>
+      </div>
+    </form>
+    <br><br>
+  
+    <button type="button" class="btn btn-primary-outline pull-right" (click)="btnClick();"><i class="fa fa-plus"></i> Back </button>
+    <button type="button" class="btn btn-primary-outline pull-right" (click)="btnClickPlaceOrder();"><i class="fa fa-plus"></i> Place Order</button> 
+

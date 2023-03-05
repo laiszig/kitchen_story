@@ -22,7 +22,7 @@
         />
       </div>
       <div class="col-2 pr-0">
-        <div #subTotalWrap>{{ "totalPerItem = $" + (cartItem.price * cartItem.quantity)  }}</div>
+        <div #subTotalWrap>{{ "Items Total = $" + (cartItem.price * cartItem.quantity)  }}</div>
       </div>
       <div class="col-1 pl-0">
         <button class="btn btn-secondary" (click)="removeFromCart(cartItem)">
@@ -42,7 +42,7 @@
         Clear Items
       </button>
 
-      <button type="button" class="btn btn-primary-outline pull-right" (click)="btnClick();"><i class="fa fa-plus"></i> Place Order</button>    
+      <button type="button" class="btn btn-primary-outline pull-right" (click)="btnClick();"><i class="fa fa-plus"></i> Payment </button>    
 
 
     </div>
