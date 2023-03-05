@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { SecurityInterceptorService } from './security-interceptor.service';
 import { PurchaseComponent } from './purchase/purchase.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
     RegisterComponent,
     LoginComponent,
     PurchaseComponent,
-    OrderSuccessComponent
+    OrderSuccessComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
