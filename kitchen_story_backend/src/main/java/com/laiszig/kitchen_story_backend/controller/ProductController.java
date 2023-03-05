@@ -1,7 +1,9 @@
 package com.laiszig.kitchen_story_backend.controller;
 
+import com.laiszig.kitchen_story_backend.controller.request.ProductRequest;
 import com.laiszig.kitchen_story_backend.controller.request.ProductSearchRequest;
 import com.laiszig.kitchen_story_backend.entity.Product;
+import com.laiszig.kitchen_story_backend.security.JwtUtil;
 import com.laiszig.kitchen_story_backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -20,6 +23,9 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private JwtUtil jwtTokenUtil;
 
     @GetMapping("/products")
     public List<Product> getAll() {
@@ -32,9 +38,16 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    public ResponseEntity<Product> saveProduct(@RequestBody Product product) {
-        productService.saveFoodItem(product);
-        return new ResponseEntity<>(product, HttpStatus.CREATED);
+    public ResponseEntity<ProductRequest> saveProduct(@RequestBody ProductRequest productRequest, @RequestHeader Map<String,String> headers) {
+        String authorization = headers.get("authorization");
+        String token = authorization.split(" ")[1];
+        final String username = jwtTokenUtil.getUsernameFromToken(token);
+        if("admin".equals(username) == false) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        productService.saveFoodItem(productRequest);
+        return new ResponseEntity<>(productRequest, HttpStatus.CREATED);
     }
 
     @GetMapping("/products/{id}")
