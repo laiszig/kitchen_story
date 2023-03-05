@@ -7,15 +7,15 @@ import com.laiszig.kitchen_story_backend.entity.Purchase;
 import com.laiszig.kitchen_story_backend.entity.PurchaseItem;
 import com.laiszig.kitchen_story_backend.repository.ProductRepository;
 import com.laiszig.kitchen_story_backend.repository.PurchaseRepository;
+import com.laiszig.kitchen_story_backend.security.JwtUtil;
+import com.laiszig.kitchen_story_backend.security.UserEntity;
 import com.laiszig.kitchen_story_backend.security.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(
@@ -32,10 +32,19 @@ public class PurchaseController {
     @Autowired
     private PurchaseRepository purchaseRepository;
 
+    @Autowired
+    private JwtUtil jwtTokenUtil;
+
     @PostMapping("/purchase")
-    public void purchase(@RequestBody PurchaseRequest purchaseRequest) {
+    public void purchase(@RequestBody PurchaseRequest purchaseRequest, @RequestHeader Map<String,String> headers) {
+
+        String authorization = headers.get("authorization");
+        String token = authorization.split(" ")[1];
+        final String username = jwtTokenUtil.getUsernameFromToken(token);
+        UserEntity userEntity = userRepository.findByUsername(username);
 
         Purchase purchase = new Purchase();
+        purchase.setUser(userEntity);
 
         Payment payment = new Payment();
         payment.setType(purchaseRequest.getPayment().getType());
@@ -52,12 +61,9 @@ public class PurchaseController {
             items.add(purchaseItem);
         }
 
-
         purchase.setPurchaseItems(items);
 
-        purchase.setUser(userRepository.findById(7L).get());
         purchaseRepository.save(purchase);
-
 
         System.out.println(purchaseRequest);
     }
