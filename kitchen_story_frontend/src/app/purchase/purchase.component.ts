@@ -53,7 +53,7 @@ export class PurchaseComponent {
   };
 
   btnClickPlaceOrder = () => {
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/order-success');
   };
   
 }

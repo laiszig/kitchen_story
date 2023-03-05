@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { SecurityInterceptorService } from './security-interceptor.service';
 import { PurchaseComponent } from './purchase/purchase.component';
+import { OrderSuccessComponent } from './order-success/order-success.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PurchaseComponent } from './purchase/purchase.component';
     CartComponent,
     RegisterComponent,
     LoginComponent,
-    PurchaseComponent
+    PurchaseComponent,
+    OrderSuccessComponent
   ],
   imports: [
     BrowserModule,
